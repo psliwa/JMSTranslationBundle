@@ -41,6 +41,11 @@ class Message
 
     /** The description/sample for translators */
     private $desc;
+	
+	/**
+	 * extra info fo message
+	 */
+	private $extras = array();
 
     /** The sources where this message occurs */
     private $sources = array();
@@ -167,6 +172,16 @@ class Message
 
         return $this;
     }
+	
+	public function getExtras()
+	{
+		return $this->extras;
+	}
+	
+	public function addExtras($name, $value)
+	{
+		$this->extras[$name] = (string) $value;
+	}
 
     public function setLocaleString($str)
     {

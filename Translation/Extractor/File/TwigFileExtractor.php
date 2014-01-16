@@ -88,7 +88,7 @@ class TwigFileExtractor implements FileVisitorInterface, \Twig_NodeVisitorInterf
                     }
 
                     $name = $this->stack[$i]->getNode('filter')->getAttribute('value');
-                    if ('desc' === $name || 'meaning' === $name) {
+                    if ('desc' === $name || 'meaning' === $name || 'android_id' === $name || 'ios_id' === $name) {
                         $arguments = $this->stack[$i]->getNode('arguments');
                         if (!$arguments->hasNode(0)) {
                             throw new RuntimeException(sprintf('The "%s" filter requires exactly one argument, the description text.', $name));
@@ -99,7 +99,13 @@ class TwigFileExtractor implements FileVisitorInterface, \Twig_NodeVisitorInterf
                             throw new RuntimeException(sprintf('The first argument of the "%s" filter must be a constant expression, such as a string.', $name));
                         }
 
-                        $message->{'set'.$name}($text->getAttribute('value'));
+						$method = 'set'.$name;
+						
+						if(is_callable(array($message, $method))) {
+							$message->$method($text->getAttribute('value'));
+						} else {
+							$message->addExtras($name, $text->getAttribute('value'));
+						}
                     } else if ('trans' === $name) {
                         break;
                     }

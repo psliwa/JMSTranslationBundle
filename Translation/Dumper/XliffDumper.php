@@ -133,6 +133,11 @@ class XliffDumper implements DumperInterface
                     $unit->appendChild($doc->createElementNS('jms:reference', (string) $source));
                 }
             }
+			
+			foreach($message->getExtras() as $name => $value) {
+				$unit->appendChild($element = $doc->createElement('jms:extras', $value));
+				$element->setAttribute('name', $name);
+			}
 
             if ($meaning = $message->getMeaning()) {
                 $unit->setAttribute('extradata', 'Meaning: '.$meaning);
