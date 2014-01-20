@@ -67,7 +67,7 @@ class XliffLoader implements LoaderInterface
 				
 				foreach ($trans->xpath('./jms:extras') as $extras) {
 					$name = $extras->attributes()->name;
-					$m->addExtras($name, (string) $extras);
+					$m->addExtras((string) $name, (string) $extras);
 				}
             }
 

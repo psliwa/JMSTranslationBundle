@@ -245,7 +245,7 @@ class Message
         if (null !== $desc = $message->getDesc()) {
             $this->desc = $desc;
         }
-
+		
         $this->new = $message->isNew();
         if ($localeString = $message->getLocaleString()) {
             $this->localeString = $localeString;

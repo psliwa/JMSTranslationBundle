@@ -56,7 +56,9 @@ class TranslationExtension extends \Twig_Extension
             'desc' => new \Twig_Filter_Method($this, 'desc'),
             'meaning' => new \Twig_Filter_Method($this, 'meaning'),
             'android_id' => new \Twig_Filter_Method($this, 'meaning'),
+			'android_array_index' => new \Twig_Filter_Method($this, 'meaning'),
             'ios_id' => new \Twig_Filter_Method($this, 'meaning'),
+			'ios_domain' => new \Twig_Filter_Method($this, 'meaning'),
         );
     }
 
