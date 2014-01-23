@@ -216,6 +216,10 @@ class Message
                 $this->localeString = $localeString;
             }
         }
+		
+		foreach ($message->getExtras() as $name => $value) {
+			$this->addExtras($name, $value);
+		}
 
         foreach ($message->getSources() as $source) {
             $this->addSource($source);
